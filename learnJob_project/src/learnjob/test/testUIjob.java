@@ -8,7 +8,9 @@ import job.LightOnJobWithNonRull;
 import job.LightOnUIJob;
 import learnJob.JobManagerUtil;
 
-public class testUIjob {
+
+
+public class testUIjob{
 	public static void main(String[] args) {
 //		((JobManager)(Job.getJobManager())).optionsChanged(new DebugOptionImp());
 		testSingleUIjob();
@@ -95,7 +97,7 @@ public class testUIjob {
 		JobManagerUtil.printAllJobs();
 	}
 	
-	private static void testDifferentInstance1() throws InterruptedException {
+	public static void testDifferentInstance1() throws InterruptedException {
 		LightOnJobWithNonRull lightOn1 = new LightOnJobWithNonRull();
 		
 		lightOn1.addJobChangeListener(new IJobChangeListener() {
