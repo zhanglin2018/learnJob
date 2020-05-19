@@ -1,21 +1,22 @@
-package learnjob.sleep;
+package learnjob.test;
 
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.Job;
-
 import job.LightOffJobWithNonRull;
 import job.LightOnJobWithNonRull;
+import job.LightOnUIJob;
 import learnJob.JobManagerUtil;
 
-public class TestJobListener {
-	public static void main(String[] args) throws InterruptedException {
+public class testUIjob {
+	public static void main(String[] args) {
 //		((JobManager)(Job.getJobManager())).optionsChanged(new DebugOptionImp());
-		testDifferentInstance1();
+		testSingleUIjob();
+//		testDifferentInstance1();
 	}
 
-	private static void testDifferentInstance() throws InterruptedException {
-		LightOnJobWithNonRull lightOn1 = new LightOnJobWithNonRull();
+	private static void testSingleUIjob() {
+		LightOnUIJob lightOn1 = new LightOnUIJob();
 		
 		lightOn1.addJobChangeListener(new IJobChangeListener() {
 			
@@ -23,7 +24,6 @@ public class TestJobListener {
 			public void sleeping(IJobChangeEvent event) {
 				JobManagerUtil.print("call the sleeping method after receive the event");
 				JobManagerUtil.printAllJobs();
-
 			}
 
 			/**
@@ -87,7 +87,11 @@ public class TestJobListener {
 
 		JobManagerUtil.waitForJobs(3000);
 		
-		Thread.sleep(5000);
+		try {
+				Thread.sleep(5000);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		JobManagerUtil.printAllJobs();
 	}
 	
@@ -156,6 +160,7 @@ public class TestJobListener {
 				JobManagerUtil.print("call the aboutToRun method after receive the event");
 				JobManagerUtil.printAllJobs();
 			}
+			
 		});
 		
 		lightOn1.schedule();

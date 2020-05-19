@@ -53,11 +53,22 @@ public class JobManagerUtil {
 		printJobs(Job.RUNNING);
 	}
 
-	public static void printAllJobs() throws NoSuchMethodException, SecurityException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException {
-		printSleepingJob();
-		printWaitingJob();
-		printRunningJob();
+	public static void printAllJobs() {
+		try {
+			printSleepingJob();
+			printWaitingJob();
+			printRunningJob();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void printJobs(int mask) throws NoSuchMethodException, SecurityException, IllegalAccessException,
